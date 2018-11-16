@@ -2,7 +2,10 @@
 import uuid
 
 from setuptools import setup, find_packages
-from pip.req import parse_requirements
+try: # for pip >= 10
+    from pip._internal.req import parse_requirements
+except ImportError: # for pip <= 9.0.3
+    from pip.req import parse_requirements
 
 __author__ = 'Andreas Thienemann <andreas@bawue.net>'
 
@@ -11,7 +14,7 @@ reqs = [str(ir.req) for ir in install_reqs]
 
 setup(
     name="napalm-procurve",
-    version="0.2.0",
+    version="0.2.0-1",
     packages=find_packages(),
     author="Andreas Thienemann",
     author_email="andreas@bawue.net",
